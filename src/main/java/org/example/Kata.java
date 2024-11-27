@@ -1,13 +1,13 @@
 package org.example;
 
 public class Kata {
-    public static String well(String[] x) {
-        int countGood = 0;
-        for (String s : x){
-            if(s.equals("good")){
-                countGood++;
-            }
+    public static int[] invert(int[] array) {
+        int[] newArr = new int[array.length];
+        int i = 0;
+        for(int val : array){
+            newArr[i] = val * -1;
+            i++;
         }
-        return  countGood == 0 ? "Fail!" : countGood <= 2 ? "Publish!" : "I smell a series!";
+        return newArr;
     }
 }

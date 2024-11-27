@@ -1,19 +1,23 @@
 package org.example;
 
-import org.junit.jupiter.api.Test;
+import java.util.*;
+import org.junit.jupiter.api.*;
+import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
-import static org.junit.jupiter.api.Assertions.*;
 
-class KataTest {
-
-    @Test
-    void well() {
+@DisplayName("Tests")
+class KataTests {
+    private void runTest(int[] expected, int[] input) {
+        assertArrayEquals(expected, Kata.invert(input), () -> String.format("Input: %s", Arrays.toString(input)));
     }
+
     @Test
-    public void basicTests() {
-        assertEquals("Fail!", Kata.well(new String[] {"bad", "bad", "bad"}));
-        assertEquals("Publish!", Kata.well(new String[] {"good", "bad", "bad", "bad", "bad"}));
-        assertEquals("I smell a series!", Kata.well(new String[] {
-                "good", "bad", "bad", "bad", "bad", "good", "bad", "bad", "good"}));
+    @DisplayName("Sample Tests")
+    void sampleTests() {
+        runTest(new int[]{-1, -2, -3, -4, -5}, new int[]{1, 2, 3, 4, 5});
+        runTest(new int[]{-1, 2, -3, 4, -5}, new int[]{1, -2, 3, -4, 5});
+        runTest(new int[]{1, 2, 3, 4, 5}, new int[]{-1, -2, -3, -4, -5});
+        runTest(new int[]{}, new int[]{});
+        runTest(new int[]{0}, new int[]{0});
     }
 }
