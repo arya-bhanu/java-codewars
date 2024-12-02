@@ -1,32 +1,37 @@
 package org.example;
 
 
-
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+
+
 
 public class SolutionTest
 {
-    @Test
-    public void Basic_Tests()
-    {
-        assertArrayEquals(new int[]{80,0}, Solution.rowWeights(new int[]{80}));
-        assertArrayEquals(new int[]{100,50}, Solution.rowWeights(new int[]{100,50}));
-        assertArrayEquals(new int[]{120,140}, Solution.rowWeights(new int[]{50,60,70,80}));
+    MaxProduct m = new MaxProduct();
+    private void test(String message, int expected, int actual) {
+        Assertions.assertEquals(expected, actual, message);
     }
+
     @Test
-    public void Odd_Vector_Length()
-    {
-        assertArrayEquals(new int[]{62,27}, Solution.rowWeights(new int[]{13,27,49}));
-        assertArrayEquals(new int[]{236,92}, Solution.rowWeights(new int[]{70,58,75,34,91}));
-        assertArrayEquals(new int[]{211,164}, Solution.rowWeights(new int[]{29,83,67,53,19,28,96}));
-    }
-    @Test
-    public void Even_Vector_Length()
-    {
-        assertArrayEquals(new int[]{100,50}, Solution.rowWeights(new int[]{100,50}));
-        assertArrayEquals(new int[]{150,151}, Solution.rowWeights(new int[]{100,51,50,100}));
-        assertArrayEquals(new int[]{207,235}, Solution.rowWeights(new int[]{39,84,74,18,59,72,35,61}));
+    public void fixedTests() {
+        String message = "Positive numbers";
+        test(message, 40, m.adjacentElementsProduct(new int[] {5, 8}));
+        test(message, 6, m.adjacentElementsProduct(new int[] {1, 2, 3}));
+        test(message, 90, m.adjacentElementsProduct(new int[] {1, 5, 10, 9}));
+        test(message, 48, m.adjacentElementsProduct(new int[] {4, 12, 3, 1, 5}));
+        test(message, 6, m.adjacentElementsProduct(new int[] {5, 1, 2, 3, 1, 4}));
+
+        message = "Both positive and negative values";
+        test(message, 21, m.adjacentElementsProduct(new int[] {3, 6, -2, -5, 7, 3}));
+        test(message, 50, m.adjacentElementsProduct(new int[] {9, 5, 10, 2, 24, -1, -48}));
+        test(message, 30, m.adjacentElementsProduct(new int[] {5, 6, -4, 2, 3, 2, -23}));
+        test(message, -14, m.adjacentElementsProduct(new int[] {-23, 4, -5, 99, -27, 329, -2, 7, -921}));
+        test(message, 6, m.adjacentElementsProduct(new int[] {5, 1, 2, 3, 1, 4}));
+
+        message = "Contains zeroes";
+        test(message, 0, m.adjacentElementsProduct(new int[] {1, 0, 1, 0, 1000}));
+        test(message, 6, m.adjacentElementsProduct(new int[] {1, 2, 3, 0}));
     }
 }
