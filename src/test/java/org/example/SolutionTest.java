@@ -1,36 +1,24 @@
 package org.example;
 
 
+
+
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 
-public class SolutionTest
-{
+public class SolutionTest {
+
     @Test
-    public void One_Digit_Number()
-    {
-        assertEquals("Automorphic", Solution.autoMorphic(1));
-        assertEquals("Not!!",       Solution.autoMorphic(3));
-        assertEquals("Automorphic", Solution.autoMorphic(6));
-        assertEquals("Not!!",       Solution.autoMorphic(9));
+    public void sampleTests() {
+        Assertions.assertArrayEquals(new int[] {2}, Kata.arrayDiff(new int [] {1,2}, new int[] {1}));
+        Assertions.assertArrayEquals(new int[] {2,2}, Kata.arrayDiff(new int [] {1,2,2}, new int[] {1}));
+        Assertions.assertArrayEquals(new int[] {1}, Kata.arrayDiff(new int [] {1,2,2}, new int[] {2}));
+        Assertions.assertArrayEquals(new int[] {1,2,2}, Kata.arrayDiff(new int [] {1,2,2}, new int[] {}));
+        Assertions.assertArrayEquals(new int[] {}, Kata.arrayDiff(new int [] {}, new int[] {1,2}));
+        Assertions.assertArrayEquals(new int[] {1,2,2}, Kata.arrayDiff(new int [] {1,2,2}, new int[] {3}));
+        Assertions.assertArrayEquals(new int[] {2,2}, Kata.arrayDiff(new int [] {1,2,2}, new int[] {3,1}));
     }
-    @Test
-    public void Two_Digit_Number()
-    {
-        assertEquals("Automorphic", Solution.autoMorphic(25));
-        assertEquals("Not!!",       Solution.autoMorphic(13));
-        assertEquals("Automorphic", Solution.autoMorphic(76));
-        assertEquals("Not!!",       Solution.autoMorphic(95));
-    }
-    @Test
-    public void Larger_Number()
-    {
-        assertEquals("Automorphic", Solution.autoMorphic(625));
-        assertEquals("Not!!",       Solution.autoMorphic(225));
-        assertEquals("Not!!",       Solution.autoMorphic(425));
-        assertEquals("Not!!",       Solution.autoMorphic(399));
-        assertEquals("Not!!",       Solution.autoMorphic(100));
-    }
+
 }
