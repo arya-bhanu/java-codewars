@@ -1,15 +1,14 @@
 package org.example;
 
+import java.util.Arrays;
+import java.util.stream.IntStream;
+
 public class Main {
     public static void main(String[] args) {
-        System.out.println(isPronic(42));
-        System.out.println("Hello world!");
+        int [] a = new int[]{1,3, 5 ,10, 21,1,1,1,10};
+        int [] b = new int[] {1};
+        IntStream newStream = IntStream.of(a).filter(x -> IntStream.of(b).noneMatch(y -> y == x));
+        System.out.println(Arrays.toString(newStream.toArray()));
     }
 
-    public static boolean isPronic(int n) {
-        if(n == 0) return true;
-        int flored = (int) Math.floor(Math.sqrt(n));
-        int next = flored + 1;
-        return (flored * next == n);
-    }
 }
