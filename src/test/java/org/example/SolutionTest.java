@@ -6,6 +6,7 @@ package org.example;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 
 
 public class SolutionTest {
@@ -20,5 +21,19 @@ public class SolutionTest {
         Assertions.assertArrayEquals(new int[] {1,2,2}, Kata.arrayDiff(new int [] {1,2,2}, new int[] {3}));
         Assertions.assertArrayEquals(new int[] {2,2}, Kata.arrayDiff(new int [] {1,2,2}, new int[] {3,1}));
     }
+
+
+    private final BraceChecker checker = new BraceChecker();
+
+    @Test
+    public void testValid() {
+        assertTrue(checker.isValid("()"));
+        assertTrue(checker.isValid("([{}])"));
+        assertFalse(checker.isValid("[(])"));
+        assertFalse(checker.isValid("(}"));
+        assertFalse(checker.isValid("[(])"));
+        assertFalse(checker.isValid("[({})](]"));
+    }
+
 
 }
