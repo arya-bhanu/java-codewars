@@ -4,7 +4,13 @@ import java.util.Stack;
 
 public class Kata {
     public static String removeParentheses(final String str) {
-        Stack<Character> chars = new Stack<>();
+
+        /*use regex instead*/
+        String updated = str.replaceAll("\\([^()]*\\)", "");
+        if(updated.contains("(")) return removeParentheses(updated);
+        return updated;
+
+       /* Stack<Character> chars = new Stack<>();
         StringBuilder result = new StringBuilder();
         for (Character c : str.toCharArray()){
             if(c == '('){
@@ -15,6 +21,6 @@ public class Kata {
                 if(chars.isEmpty()) result.append(c);
             }
         }
-        return result.toString();
+        return result.toString();*/
     }
 }
