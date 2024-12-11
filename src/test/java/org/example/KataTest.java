@@ -1,14 +1,54 @@
 package org.example;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@DisplayName("Sample tests")
 class KataTest {
+
+
     @Test
-    void basicTest(){
-        assertEquals( 5, Kata.missingNo(new int[] { 0, 1, 2, 3, 4, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67, 68, 69, 70, 71, 72, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85, 86, 87, 88, 89, 90, 91, 92, 93, 94, 95, 96, 97, 98, 99, 100 }));
-        assertEquals(10, Kata.missingNo(new int[] { 81, 73, 3, 51, 48, 66, 43, 23, 27, 14, 54, 21, 68, 64, 17, 20, 80, 87, 44, 33, 39, 93, 60, 52, 55, 18, 91, 100, 95, 53, 69, 63, 82, 0, 24, 41, 6, 9, 86, 22, 1, 98, 15, 62, 36, 35, 57, 16, 70, 13, 4, 76, 88, 47, 11, 65, 96, 67, 58, 34, 59, 61, 79, 72, 25, 75, 77, 78, 85, 19, 49, 2, 97, 5, 37, 83, 12, 84, 8, 89, 90, 38, 26, 50, 31, 71, 56, 29, 46, 45, 74, 32, 94, 30, 42, 40, 7, 92, 28, 99 }));
+    public void basicTests() {
+        for (String[] trial : new String[][]{
+                {"example(unwanted thing)example", "exampleexample"},
+                {"example(unwanted thing)example", "exampleexample"},
+                {"example (unwanted thing) example", "example  example"},
+                {"a (bc d)e", "a e"},
+                {"a(b(c))", "a"},
+                {"hello example (words(more words) here) something", "hello example  something"},
+                {"(first group) (second group) (third group)", "  "}})
+            assertEquals(trial[1],  Kata.removeParentheses(trial[0]));
     }
 
+    @Test
+    @DisplayName("Increasing sequence: [1, 2, 4]")
+    void testIncreasing_1() {
+        assertEquals(3, Solution.findMissing(new int[]{ 1, 2, 4}), "Incorrect answer for [1, 2, 4]");
+    }
+
+    @Test
+    @DisplayName("Increasing sequence: negative")
+    void testIncreasing_2() {
+        assertEquals(-35, Solution.findMissing(new int[]{-46, -45, -44, -43, -42, -41, -40, -39, -38, -37, -36, -34, -33, -32, -31, -30, -29, -28, -27, -26, -25, -24, -23, -22, -21, -20, -19, -18, -17, -16, -15, -14}), "Incorrect answer for [1, 3, 4]");
+    }
+
+    @Test
+    @DisplayName("Decreasing sequence: [4, 2, 1]")
+    void testDecreasing_1() {
+        assertEquals(3, Solution.findMissing(new int[]{ 4, 2, 1}), "Incorrect answer for [4, 2, 1]");
+    }
+
+    @Test
+    @DisplayName("Decreasing sequence: [4, 3, 1]")
+    void testDecreasing_2() {
+        assertEquals(2, Solution.findMissing(new int[]{ 4, 3, 1}), "Incorrect answer for [4, 3, 1]");
+    }
+
+    @Test
+    @DisplayName("Constant sequence: [1, 1, 1]")
+    void testConstant() {
+        assertEquals(1, Solution.findMissing(new int[]{ 1, 1, 1}), "Incorrect answer for [1, 1, 1]");
+    }
 }

@@ -1,12 +1,20 @@
 package org.example;
 
-import java.util.stream.IntStream;
+import java.util.Stack;
 
-public class Kata
-{
-
-    public static int missingNo(int[] nums) {
-        int sumAll = IntStream.of(nums).sum();
-        return (101 * 50) - sumAll;
+public class Kata {
+    public static String removeParentheses(final String str) {
+        Stack<Character> chars = new Stack<>();
+        StringBuilder result = new StringBuilder();
+        for (Character c : str.toCharArray()){
+            if(c == '('){
+                chars.add(')');
+            }else if(c == ')'){
+                if(chars.peek() == ')') chars.pop();
+            }else{
+                if(chars.isEmpty()) result.append(c);
+            }
+        }
+        return result.toString();
     }
 }
